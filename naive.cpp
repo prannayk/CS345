@@ -18,6 +18,12 @@ int main(){
 		point p1 (i,j);
 		ps[n] = p1;  
 	}
+	if (size  == 1) {
+		cout << "Center of circle : " << ps[0] << " and radius is : " << 0 << endl;
+	} else if (size == 2) {
+		point p1((ps[0].to_vector() + ps[1].to_vector()) / 2);
+		cout << "Center of circle : " << p1 << " and radius is  : " << ps[0].distance(p1) << endl;
+	}
 	for (int i=0; i<size;i++){
 		for (int j=i+1 ; j <size; j++){
 			for (int k=j+1; k<size; k++){
