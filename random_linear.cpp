@@ -31,30 +31,25 @@ int main(){
 	int i = 2;
 	while ( i < size ) {
 		if (c.outside(ps[i])){
-			int far = 0;
-			double dist = ps[0].distance(ps[i]);
-			for (int j=1; j<i ; j++){
-				distij = ps[i].distance(ps[j]);
-				if (distij > dist){
-					far = j;
-					dist = distij;
+			point center((ps[i].to_vector() + ps[0].to_vector()) / 2);
+			circle c2(center,center.distance(ps[0]));
+			c = c2;
+			for(int j=1; j < i; j++){
+				if(c.outside(ps[j])){
+					point center((ps[j].to_vector() + ps[i].to_vector()) / 2);
+					circle c2(center, center.distance(ps[j]));
+					c = c2;
+					for (int k=0; k < i; k++){
+						if (c.outside(ps[k])){
+							circle c2(ps[i], ps[j], ps[k]);
+							c = c2;
+						}
+					}
 				}
-			}
-			line l(ps[i],ps[far]);
-			circle c(ps[i],ps[far],ps[far]);
-			int p1 = i, p2 = far , p3 = far;
-			for (int j=1; j<i; j++){
-				if (c.outside(ps[j])){
-					line l1(ps[i],ps[j]);
-					double angle = l.angle(l,l1);
-					if (angle > 0)	p2 = j;
-					else if (angle < 0 )	p3 = j;
-				}
-				circle c2(ps[p1],ps[p2],ps[p3]);
-				c = c2;
 			}
 		}
 		i++;
 	}
+	cout << "Center of circle : " << c.center() << " and radius is : "<< c.radius() << endl;
 	return 0;
 }
