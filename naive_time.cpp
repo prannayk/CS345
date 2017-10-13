@@ -1,7 +1,7 @@
 #include <iostream>
 #include <LEDA/geo/circle.h>
 #include <LEDA/geo/point.h>
-
+#include <time.h>
 using namespace std;
 using leda::point;
 using leda::circle;
@@ -11,7 +11,7 @@ int main(){
 	cin>>n; circle smallest;
 	point ps[n];
 	point p1;
-	int size = n;
+	int size = n; clock_t sec = clock();
 	while(n > 0){
 		n--;
 		cin>>i ; cin>>j;
@@ -50,5 +50,5 @@ int main(){
 			}
 		}
 	}
-	cout << smallest.center() << " " << smallest.radius() << endl;
+	cout << (float)(clock() - sec) / CLOCKS_PER_SEC << endl; 
 }

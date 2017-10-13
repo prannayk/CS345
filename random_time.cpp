@@ -2,14 +2,15 @@
 #include <LEDA/geo/circle.h>
 #include <LEDA/geo/point.h>
 #include <LEDA/geo/line.h>
-
+#include <time.h>
 using namespace std;
 using leda::point;
 using leda::circle;
 using leda::line ;
 
 int main(){
-	int n;
+	int n; clock_t sec;
+	sec = clock();
 	float iin, jin;
 	cin>>n;
 	point ps[n];
@@ -22,10 +23,7 @@ int main(){
 		ps[n] = p1;  
 	}
 	circle c;
-	if (size  == 1) {
-		cout << "Center of circle : " << ps[0] << " and radius is : " << 0 << endl;
-		return 0; 
-	} else {
+	if (size  != 1) {
 		point p1((ps[0].to_vector() + ps[1].to_vector()) / 2);
 		circle c1(p1,ps[0].distance(p1));
 		c = c1;
@@ -51,9 +49,6 @@ int main(){
 			}
 		}i++;
 	}
-	int flag = 0;
-	for (int i=0; i<size;i++)
-		if (c.outside(ps[i]))	flag++;
-	if (!flag)	cout << "Center of circle : " << c.center() << " and radius is : "<< c.radius() << endl;
+	cout << (float)(clock() - sec) / CLOCKS_PER_SEC << endl;
 	return 0;
 }
