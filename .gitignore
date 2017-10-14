@@ -1,3 +1,6 @@
 *.o
 *.out
 *.swp
+f[0-9]
+naive 
+random
