@@ -2,7 +2,8 @@
 *.out
 *.swp
 f[0-9]
+f1[0-9]
 naive 
 random
 *.npy
-
+f[0-9]*.*
